@@ -3,6 +3,7 @@
 # ref: https://github.com/dmaasland/proxyshell-poc
 
 import argparse
+import os
 import random
 import string
 import requests
@@ -110,11 +111,22 @@ def refineTxt(filename):
     print("refine txt file, sort and unique done")
 
 
+def checkPath(path):
+    if not os.path.isdir(path):
+        os.mkdir(path)
+
+
 def main():
 
     args = get_args()
     domain = args.u
     
+    temp = "temp/"
+    output = "output/"
+
+    checkPath(temp)
+    checkPath(output)
+
     if args.c == "alpha":
         charset = alpha
     elif args.c == "alphanumber":
